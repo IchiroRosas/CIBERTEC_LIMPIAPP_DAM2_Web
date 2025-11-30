@@ -1,0 +1,46 @@
+<div class="sidebar">
+    <div class="sidebar-content">
+        <div class="sidebar-header">
+            <div class="logo-icon"><img src="/LIMPIAPP_logo.png"></div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul class="nav-list">
+                <!-- REGISTRADOS -->
+                <li class="nav-item">
+                    <a routerLink="/principal" routerLinkActive="active" class="nav-link"
+                        [routerLinkActiveOptions]="{ exact: true }">
+                        <span class="nav-icon"><img src="/icon_registrado.svg"></span>
+                        <span class="nav-text">Registrados</span>
+                    </a>
+                </li>
+
+                <!-- ASIGNADOS -->
+                <li class="nav-item">
+                    <a routerLink="/asignados" routerLinkActive="active" class="nav-link"
+                        [routerLinkActiveOptions]="{ exact: true }">
+                        <span class="nav-icon"><img src="/icon_asignado.svg"></span>
+                        <span class="nav-text">Asignados</span>
+                    </a>
+                </li>
+
+
+                <!-- FINALIZADOS -->
+                <li class="nav-item">
+                    <a routerLink="/finalizados" routerLinkActive="active" class="nav-link"
+                        [routerLinkActiveOptions]="{ exact: true }">
+                        <span class="nav-icon"><img src="/icon_finalizado.svg"></span>
+                        <span class="nav-text">Finalizados</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="logout-btn" (click)="cerrarSession()">
+                <span class="logout-icon"><img src="/logout.svg"></span>
+                <span class="logout-text">Cerrar Sesión</span>
+            </button>
+        </div>
+    </div>
+</div>
