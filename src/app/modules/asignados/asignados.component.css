@@ -10,7 +10,7 @@
 
 .page-container {
   width: 100%;
-  min-height: 100vh;
+  min-height: 100%;
   padding: 20px;
   box-sizing: border-box;
   background-color: var(--color-secondary); 
@@ -22,9 +22,10 @@
 
 /* Título centrado */
 h2 {
+  margin-top: 20px;
   text-align: center;
   color: var(--color-title);
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: 700;
   margin-bottom: 25px;
 }
@@ -32,7 +33,7 @@ h2 {
 /* Contenedor de tabla */
 .table-container {
   width: 95%;
-  max-width: 1400px;  
+  max-width: 85vw;  
   overflow-x: auto;
   padding: 20px;
   background-color: var(--color-table-bg);
@@ -53,7 +54,7 @@ thead {
 
 th, td {
   padding: 12px 15px;
-  text-align: left;
+  text-align: center;
   color: var(--color-dark-text);
   border-bottom: 1px solid #dcdcdc;
 }
@@ -62,7 +63,7 @@ tr:nth-child(even) {
   background-color: #eaeaea;
 }
 
-tr:hover {
+tbody tr:hover {
   background-color: #d0d0d0;
   transition: background-color 0.3s;
 }

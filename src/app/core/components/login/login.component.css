@@ -116,7 +116,7 @@
 /* --- Botón "Iniciar" --- */
 .btn-primary {
     display: inline-flex;
-    line-height: 20px;
+    line-height: 30px;
     align-items: center;
     justify-content: center;
     background-color: #fff;
@@ -130,7 +130,8 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
     width: 100%;
-    margin-bottom: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 .btn-primary:hover {
