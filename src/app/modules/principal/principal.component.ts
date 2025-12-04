@@ -1,40 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { VerAsignarPedidoComponent } from './components/ver-asignar-pedido/ver-asignar-pedido.component';
+import { PrincipalService } from './services/principal.service';
+import { SolicitudServicio } from '../../shared/models/dto';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-principal',
   templateUrl: './principal.component.html',
   styleUrls: ['./principal.component.css']
 })
-export class PrincipalComponent {
+export class PrincipalComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private principalService: PrincipalService) { }
 
-  solicitudes = [
-    {
-      numero: 1,
-      cliente: 'Fernando',
-      categoria: 'Limpieza de baños',
-      estado: 'Pendiente',
-      limpador: null,          
-      horarioInicio: '12:00 PM',
-      duracionEstimada: '2h',
-      direccion: 'Av. Siempre Viva 123',
-      precioFinal: 50
-    },
-    {
-      numero: 2,
-      cliente: 'Ana Lu',
-      categoria: 'Sofas',
-      estado: 'Pendiente',
-      limpador: null,
-      horarioInicio: '10:00 AM',
-      duracionEstimada: '1h',
-      direccion: 'Calle Falsa 456',
-      precioFinal: 30
-    }
-  ];
+  solicitudes!: Observable<SolicitudServicio[]>;
+
+  ngOnInit() {
+    this.solicitudes = this.principalService.obtenerSolicitudesPendientes();
+  }
 
   abrirDialogVerAsignar(solicitud: any) {
     const dialogRef = this.dialog.open(VerAsignarPedidoComponent, {
@@ -43,5 +27,5 @@ export class PrincipalComponent {
       data: { solicitud: solicitud }
     });
   }
-  
+
 }

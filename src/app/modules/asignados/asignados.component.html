@@ -5,25 +5,25 @@
     <table>
       <thead>
         <tr>
-          <th>Id</th>
+          <th>#</th>
           <th>Cliente</th>
           <th>Categoría</th>
           <th>Estado</th>
-          <th>Limpador</th>
-          <th>Horario</th>
+          <th>Limpiador</th>
+          <th>Fecha/hora</th>
           <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let solicitud of solicitudes">
-          <td>{{ solicitud.numero }}</td>
-          <td>{{ solicitud.cliente }}</td>
-          <td>{{ solicitud.categoria }}</td>
+        <tr *ngFor="let solicitud of solicitudes | async; let i = index">
+          <td>{{ i+1 }}</td>
+          <td>{{ solicitud.clienteNombres }} {{ solicitud.clienteApellidos }}</td>
+          <td>{{ solicitud.categoriaServicio }}</td>
           <td>{{ solicitud.estado }}</td>
-          <td>{{ solicitud.limpador ? solicitud.limpador : 'Sin asignar' }}</td>
-          <td>{{ solicitud.horarioInicio }} - {{ solicitud.duracionEstimada }}</td>
+          <td>{{ solicitud.limpiadorNombres ? solicitud.limpiadorNombres : '' }} {{ solicitud.limpiadorApellidos ? solicitud.limpiadorApellidos : '' }}</td>
+          <td>{{ solicitud.fechaHora.toDate() | date: 'short' }}</td>
           <td>
-            <button (click)="abrirDialogVerAsignado(solicitud)">Detalle</button>
+            <button (click)="abrirDialogVerAsignado(solicitud)">Asignar</button>
           </td>
         </tr>
       </tbody>

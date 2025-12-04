@@ -1,40 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { VerFinalizadoComponent } from './components/ver-finalizado/ver-finalizado.component';
+import { FinalizadosService } from './services/finalizados.service';
+import { SolicitudServicio } from '../../shared/models/dto';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-finalizados',
   templateUrl: './finalizados.component.html',
   styleUrl: './finalizados.component.css'
 })
-export class FinalizadosComponent {
+export class FinalizadosComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private finalizadosService: FinalizadosService) {}
 
-  solicitudes = [
-    {
-      numero: 1,
-      cliente: 'Fernando',
-      categoria: 'Limpieza de baños',
-      estado: 'Finalizado',
-      limpador: 'Carlos López',          
-      horarioInicio: '12:00 PM',
-      duracionEstimada: '2h',
-      direccion: 'Av. Siempre Viva 123',
-      precioFinal: 50
-    },
-    {
-      numero: 2,
-      cliente: 'Ana Lu',
-      categoria: 'Sofas',
-      estado: 'Finalizado',
-      limpador: 'Carlos López',
-      horarioInicio: '10:00 AM',
-      duracionEstimada: '1h',
-      direccion: 'Calle Falsa 456',
-      precioFinal: 30
-    }
-  ];
+  solicitudesFinalizadas!: Observable<SolicitudServicio[]>;
+
+  ngOnInit() {
+    this.solicitudesFinalizadas = this.finalizadosService.obtenerSolicitudesFinalizadas();
+  }
 
   abrirDialogVerFinalizado(solicitud: any) {
     const dialogRef = this.dialog.open(VerFinalizadoComponent, {
