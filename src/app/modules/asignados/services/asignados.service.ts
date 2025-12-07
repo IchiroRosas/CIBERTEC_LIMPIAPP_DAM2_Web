@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { collection, collectionData, Firestore, query, where } from '@angular/fire/firestore';
+import { collection, collectionData, Firestore, or, query, where } from '@angular/fire/firestore';
 import { SolicitudServicio } from '../../../shared/models/dto';
 import { Observable } from 'rxjs';
 
@@ -14,7 +14,7 @@ export class AsignadosService {
     const solicitudesRef = collection(this.firestore, 'solicitudesServicio');
     const consultaPendientes = query(
       solicitudesRef,
-      where('estado', '==', 'asignado')
+      or(where('estado', '==', 'asignado'), where('estado', '==', 'aceptado'))
     );
     return collectionData(consultaPendientes, { idField: 'id' }) as Observable<SolicitudServicio[]>;
   }

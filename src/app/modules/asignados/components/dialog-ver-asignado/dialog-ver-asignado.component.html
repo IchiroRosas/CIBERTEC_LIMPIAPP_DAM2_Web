@@ -1,1 +1,65 @@
-<p>dialog-ver-asignado works!</p>
+<div class="dialog-content">
+
+    <h2>Ver solicitud asignada</h2>
+
+    <div class="ver-dialog-content">
+        <form>
+            <div class="info-group">
+                <label>Cliente: </label>
+                <span>{{solicitud.clienteNombres}} {{solicitud.clienteApellidos}}</span>
+            </div>
+            <div class="info-group">
+                <label>Nro. Documento (Cliente): </label>
+                <span>{{solicitud.clienteDni}} </span>
+            </div>
+            <div class="info-group">
+                <label>Teléfono (Cliente): </label>
+                <span>{{solicitud.clienteCelular}} </span>
+            </div>
+            <div class="info-group">
+                <label>Dirección: </label>
+                <span>{{solicitud.solicitudDireccion}} - {{solicitud.solicitudDistrito}}</span>
+            </div>
+            <div class="info-group">
+                <label>Fecha/Hora: </label>
+                <span>{{ solicitud.fechaHora?.toDate() | date: 'dd/MM/yyyy HH:mm' }}</span>
+            </div>
+            <div class="info-group">
+                <label>Categoría de servicio: </label>
+                <span>{{ solicitud.categoriaServicio }}</span>
+            </div>
+            <div class="info-group">
+                <label>Información adicional: </label>
+                <span>{{ solicitud.informacionAdicional }}</span>
+            </div>
+            <div class="info-group">
+                <label>Cantidad: </label>
+                <span>{{ solicitud.cantidad}}</span>
+            </div>
+            <div class="info-group">
+                <label>Precio unitario: </label>
+                <span>S/.{{ solicitud.precioUnitario }}</span>
+            </div>
+            <div class="info-group">
+                <label>Precio total: </label>
+                <span>S/.{{ solicitud.precioTotal }}</span>
+            </div>
+            <div class="info-group">
+                <label>Limpiador: </label>
+                <span>{{solicitud.limpiadorNombres}} {{solicitud.limpiadorApellidos}}</span>
+            </div>
+            <div class="info-group">
+                <label>Nro. Documento (Limpiador): </label>
+                <span>{{solicitud.limpiadorDni}}</span>
+            </div>
+            <div class="info-group">
+                <label>Teléfono (Cliente): </label>
+                <span>{{solicitud.limpiadorCelular}} </span>
+            </div>
+            <div class="action-buttons">
+                <button type="button" (click)="cerrarDialog()">Volver</button>
+            </div>
+        </form>
+    </div>
+
+</div>

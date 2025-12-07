@@ -68,7 +68,6 @@ tbody tr:hover {
   transition: background-color 0.3s;
 }
 
-/* Botón */
 button {
   background-color: var(--color-primary);
   color: var(--color-white);

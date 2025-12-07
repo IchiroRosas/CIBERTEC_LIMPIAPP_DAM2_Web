@@ -8,6 +8,7 @@
           <th>#</th>
           <th>Cliente</th>
           <th>Categoría</th>
+          <th>Distrito de solicitud</th>
           <th>Estado</th>
           <th>Limpiador</th>
           <th>Fecha/hora</th>
@@ -19,11 +20,12 @@
           <td>{{ i+1 }}</td>
           <td>{{ solicitud.clienteNombres }} {{ solicitud.clienteApellidos }}</td>
           <td>{{ solicitud.categoriaServicio }}</td>
+          <td>{{ solicitud.solicitudDistrito }}</td>
           <td>{{ solicitud.estado }}</td>
           <td>{{ solicitud.limpiadorNombres ? solicitud.limpiadorNombres : '' }} {{ solicitud.limpiadorApellidos ? solicitud.limpiadorApellidos : '' }}</td>
-          <td>{{ solicitud.fechaHora.toDate() | date: 'short' }}</td>
+          <td>{{ solicitud.fechaHora!.toDate() | date: 'dd/MM/yyyy HH:mm' }}</td>
           <td>
-            <button (click)="abrirDialogVerFinalizado(solicitud)">Detalle</button>
+            <button (click)="abrirDialogVerFinalizado(solicitud)">Ver detalle</button>
           </td>
         </tr>
       </tbody>

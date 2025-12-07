@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 })
 export class FinalizadosComponent implements OnInit {
 
-  constructor(public dialog: MatDialog, private finalizadosService: FinalizadosService) {}
+  constructor(public dialog: MatDialog, private finalizadosService: FinalizadosService) { }
 
   solicitudesFinalizadas!: Observable<SolicitudServicio[]>;
 
@@ -22,9 +22,10 @@ export class FinalizadosComponent implements OnInit {
 
   abrirDialogVerFinalizado(solicitud: any) {
     const dialogRef = this.dialog.open(VerFinalizadoComponent, {
-      width: '70vw',
-      height: '80vh',
-      data: { solicitud: solicitud }
-    });  }
+      minWidth: '50vw',
+      minHeight: '50vh',
+      data: { solicitudSeleccionada: solicitud }
+    });
+  }
 
 }

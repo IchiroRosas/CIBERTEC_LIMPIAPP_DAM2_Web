@@ -5,7 +5,6 @@ import { AsignadosRoutingModule } from './asignados-routing.module';
 import { AsignadosComponent } from './asignados.component';
 import { DialogVerAsignadoComponent } from './components/dialog-ver-asignado/dialog-ver-asignado.component';
 
-
 @NgModule({
   declarations: [
     AsignadosComponent,
@@ -13,7 +12,7 @@ import { DialogVerAsignadoComponent } from './components/dialog-ver-asignado/dia
   ],
   imports: [
     CommonModule,
-    AsignadosRoutingModule
+    AsignadosRoutingModule,
   ]
 })
 export class AsignadosModule { }

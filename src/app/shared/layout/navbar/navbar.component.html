@@ -14,7 +14,7 @@
           <a routerLink="/principal" routerLinkActive="active" class="nav-link"
             [routerLinkActiveOptions]="{ exact: true }">
             <span class="nav-icon"><img src="/icon_registrado.svg" alt="Registrados"></span>
-            <span class="nav-text">Registrados</span>
+            <span class="nav-text">Pendientes</span>
           </a>
         </li>
 
@@ -22,7 +22,7 @@
           <a routerLink="/asignados" routerLinkActive="active" class="nav-link"
             [routerLinkActiveOptions]="{ exact: true }">
             <span class="nav-icon"><img src="/icon_asignado.svg" alt="Asignados"></span>
-            <span class="nav-text">Asignados</span>
+            <span class="nav-text">Asignados/Aceptados</span>
           </a>
         </li>
 
@@ -38,7 +38,7 @@
 
     <!-- Botón de cerrar sesión a la derecha -->
     <div class="navbar-footer">
-      <button class="logout-btn" (click)="cerrarSession()">
+      <button class="logout-btn" (click)="cerrarSesion()">
         <span class="logout-icon"><img src="/logout.svg" alt="Logout"></span>
         <span class="logout-text">Cerrar Sesión</span>
       </button>

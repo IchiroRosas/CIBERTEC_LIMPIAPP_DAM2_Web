@@ -6,6 +6,7 @@ import { PrincipalRoutingModule } from './principal-routing.module';
 import { VerAsignarPedidoComponent } from './components/ver-asignar-pedido/ver-asignar-pedido.component';
 import { PrincipalComponent } from './principal.component';
 import { SharedModule } from '../../shared/shared.module';
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { SharedModule } from '../../shared/shared.module';
   imports: [
     CommonModule,
     PrincipalRoutingModule,
-    SharedModule
-  ]
+    SharedModule,
+    ReactiveFormsModule
+]
 })
 export class PrincipalModule { }

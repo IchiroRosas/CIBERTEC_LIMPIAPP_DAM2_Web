@@ -4,19 +4,30 @@
             <img src="/LIMPIAPP_logo.png" alt="LIMPIAPP Logo">
         </div>
 
-        <form>
+        <form [formGroup]="loginForm" (ngSubmit)="iniciarSesion()">
             <div class="input-group">
-                <label for="usuario">Usuario</label>
-                <input type="text" id="usuario" placeholder="Escribir...">
+                <label for="usuario">Correo</label>
+                <input type="text" id="usuario" placeholder="Escribir..." formControlName="correo">
+                <div *ngIf= "loginForm.controls['correo'].invalid && (loginForm.controls['correo'].dirty || loginForm.controls['correo'].touched)" class="error-message">
+                    <span>El correo es obligatorio.</span>
+                </div>
             </div>
 
             <div class="input-group">
                 <label for="password">Contraseña</label>
-                <input type="password" id="password" placeholder="Escribir...">
+                <input type="password" id="password" placeholder="Escribir..." formControlName="password">
+                <div *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)" class="error-message">
+                    <span>La contraseña es obligatoria.</span>
+                </div>
             </div>
 
-            <button type="button" class="btn-primary" (click)="iniciarSesion()">
-                <strong>Iniciar</strong>
+            <div *ngIf="errorMessage" class="general-error">
+                {{ errorMessage }}
+            </div>
+
+            <button type="submit" class="btn-primary" [disabled]="loginForm.invalid">
+                <strong *ngIf="!isLoading">Iniciar</strong>
+                <strong *ngIf="isLoading">Cargando...</strong>
             </button>
         </form>
     </div>

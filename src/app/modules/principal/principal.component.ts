@@ -20,11 +20,11 @@ export class PrincipalComponent implements OnInit {
     this.solicitudes = this.principalService.obtenerSolicitudesPendientes();
   }
 
-  abrirDialogVerAsignar(solicitud: any) {
+  abrirDialogVerAsignar(solicitud: SolicitudServicio) {
     const dialogRef = this.dialog.open(VerAsignarPedidoComponent, {
-      width: '70vw',
-      height: '80vh',
-      data: { solicitud: solicitud }
+      minWidth: '30vw',
+      minHeight: '30vh',
+      data: { solicitudSeleccionada: solicitud }
     });
   }
 

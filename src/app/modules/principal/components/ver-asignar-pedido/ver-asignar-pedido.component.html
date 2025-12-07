@@ -1,1 +1,62 @@
-<p>ver-asignar-pedido works!</p>
+<div class="dialog-content">
+
+    <h2>Asignar solicitud a limpiador</h2>
+
+    <div class="asignar-dialog-content">
+        <form [formGroup]="asignarLimpiadorForm" (ngSubmit)="asignarLimpiador()">
+            <div class="info-group">
+                <label >Cliente: </label>
+                <span>{{solicitud.clienteNombres}} {{solicitud.clienteApellidos}}</span>
+            </div>
+            <div class="info-group">
+                <label >Nro. Documento: </label>
+                <span>{{solicitud.clienteDni}} </span>
+            </div>
+            <div class="info-group">
+                <label >Teléfono: </label>
+                <span>{{solicitud.clienteCelular}} </span>
+            </div>
+            <div class="info-group">
+                <label >Dirección: </label>
+                <span>{{solicitud.solicitudDireccion}} - {{solicitud.solicitudDistrito}}</span>
+            </div>
+            <div class="info-group">
+                <label >Fecha/Hora: </label>
+                <span>{{ solicitud.fechaHora?.toDate() | date: 'dd/MM/yyyy HH:mm' }}</span>
+            </div>
+            <div class="info-group">
+                <label >Categoría de servicio: </label>
+                <span>{{ solicitud.categoriaServicio }}</span>
+            </div>
+            <div class="info-group">
+                <label >Información adicional: </label>
+                <span>{{ solicitud.informacionAdicional }}</span>
+            </div>
+            <div class="info-group">
+                <label >Cantidad: </label>
+                <span>{{ solicitud.cantidad}}</span>
+            </div>
+            <div class="info-group">
+                <label>Precio unitario: </label>
+                <span>S/.{{ solicitud.precioUnitario }}</span>
+            </div>
+            <div class="info-group">
+                <label>Precio total: </label>
+                <span>S/.{{ solicitud.precioTotal }}</span>
+            </div>
+            <div class="info-group">
+                <label>Limpiador: </label>
+                <select id="limpiadorSelect" formControlName="limpiadorUid">
+                    <option [value]="null" selected disabled>Seleccione un limpiador...</option>
+                    <option [value]="limpiador.uid" *ngFor="let limpiador of limpiadores | async">{{limpiador.nombres}}
+                        {{limpiador.apellidos}} - {{limpiador.distrito}}</option>
+                </select>
+            </div>
+            <div class="action-buttons">
+                <button type="submit" [disabled]="asignarLimpiadorForm.invalid">Asignar</button>
+                <button type="button" (click)="cerrarDialog()">Cancelar</button>
+            </div>
+        </form>
+    </div>
+
+</div>
