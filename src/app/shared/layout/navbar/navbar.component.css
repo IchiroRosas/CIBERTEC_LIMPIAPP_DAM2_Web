@@ -112,9 +112,28 @@
   font-size: 16px;
 }
 
-/* Botón de logout */
 .navbar-footer {
+  display: flex;
   flex-shrink: 0;
+}
+
+.profile-btn {
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: transform 0.3s ease;
+}
+
+.profile-btn:hover {
+  transform: scale(1.1);
+}
+
+.profile-btn img {
+  width: 30px;
+  height: 30px;
 }
 
 .logout-btn {

@@ -22,8 +22,8 @@ export class PrincipalComponent implements OnInit {
 
   abrirDialogVerAsignar(solicitud: SolicitudServicio) {
     const dialogRef = this.dialog.open(VerAsignarPedidoComponent, {
-      minWidth: '30vw',
-      minHeight: '30vh',
+      minWidth: '50vw',
+      minHeight: '50vh',
       data: { solicitudSeleccionada: solicitud }
     });
   }

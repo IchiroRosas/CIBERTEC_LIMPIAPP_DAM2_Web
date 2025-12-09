@@ -17,12 +17,19 @@ export class LoginService {
   ) { }
 
   isAuthenticated(): boolean {
-    return this.auth.currentUser !== null;
+    if (this.auth.currentUser !== null) {
+      const users = collection(this.firestore, 'users');
+      const currentAdmin = query(users, and(where('rol','==','administrador'), where('uid','==',this.auth.currentUser.uid)));
+      if (currentAdmin) {
+        return true;
+      }
+    }
+    return false;
   }
 
-  async logout() {
+    logout() {
     sessionStorage.clear();
-    await this.auth.signOut();
+    this.auth.signOut();
     this.router.navigate(['/login']);
   }
 

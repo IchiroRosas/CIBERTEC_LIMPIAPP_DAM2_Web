@@ -38,6 +38,9 @@
 
     <!-- Botón de cerrar sesión a la derecha -->
     <div class="navbar-footer">
+      <button class="profile-btn" (click)="abrirPerfil()">
+        <img src="icon_perfil.svg" alt="perfil_icon">
+      </button>
       <button class="logout-btn" (click)="cerrarSesion()">
         <span class="logout-icon"><img src="/logout.svg" alt="Logout"></span>
         <span class="logout-text">Cerrar Sesión</span>

@@ -23,8 +23,8 @@ export class AsignadosComponent implements OnInit {
 
   abrirDialogVerAsignado(solicitud: any) {
     const dialogRef = this.dialog.open(DialogVerAsignadoComponent, {
-      minWidth: '30vw',
-      minHeight: '30vh',
+      minWidth: '50vw',
+      minHeight: '50vh',
       data: { solicitudSeleccionada: solicitud }
     });
   }

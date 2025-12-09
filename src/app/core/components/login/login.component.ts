@@ -40,11 +40,12 @@ export class LoginComponent implements OnInit {
     try {
       const userCredential = await signInWithEmailAndPassword(this.auth, correo, password);
       this.loginService.obtenerDatosUsuarioLogeado(userCredential.user.uid).subscribe(usuarioLogeado => {
-        if (usuarioLogeado) {
+        if (usuarioLogeado.length > 0) {
           this.llenarSessionStorage(usuarioLogeado[0]);
           this.router.navigate(['/principal']);
           this.mensajeBienvenida();
-        }
+        } 
+        this.errorMessage = 'Credenciales inválidas. Verifica tu correo y contraseña.';
       });
     } catch (error) {
       this.isLoading = false;

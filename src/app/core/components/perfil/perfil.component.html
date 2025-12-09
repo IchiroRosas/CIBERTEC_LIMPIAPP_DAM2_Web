@@ -1,0 +1,31 @@
+<div class="dialog-content">
+
+    <h2>Mi perfil</h2>
+
+    <div class="ver-dialog-content">
+        <div class="info-group">
+            <label>Nombre completo: </label>
+            <span>{{usuario.nombres}} {{usuario.apellidos}}</span>
+        </div>
+        <div class="info-group">
+            <label>Nro. Documento: </label>
+            <span>{{usuario.dni}} </span>
+        </div>
+        <div class="info-group">
+            <label>Teléfono: </label>
+            <span>{{usuario.celular}} </span>
+        </div>
+        <div class="info-group">
+            <label>Correo: </label>
+            <span>{{usuario.email}} </span>
+        </div>
+        <div class="info-group">
+            <label>Rol:</label>
+            <span>{{usuario.rol!.toUpperCase()}}</span>
+        </div>
+        <div class="action-buttons">
+            <button type="button" (click)="cerrarDialog()">Volver</button>
+        </div>
+    </div>
+
+</div>

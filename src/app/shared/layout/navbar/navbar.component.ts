@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { LoginService } from '../../../core/services/login.service';
+import { PerfilComponent } from '../../../core/components/perfil/perfil.component';
+import { MatDialog } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -8,7 +10,18 @@ import Swal from 'sweetalert2';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  constructor(private loginService: LoginService) { }
+  constructor(
+    private loginService: LoginService, 
+    private dialog: MatDialog
+  ) { }
+
+  abrirPerfil() {
+    const dialogRef = this.dialog.open(PerfilComponent, {
+      minWidth: '20vw',
+      minHeight: '20vh',
+      data: {}
+    });
+  }
 
   async cerrarSesion() {
     Swal.fire({
