@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 import { Usuario } from '../../shared/models/dto';
 import { query, and, collection, collectionData, Firestore, where } from '@angular/fire/firestore';
 
@@ -16,18 +16,26 @@ export class LoginService {
     private router: Router
   ) { }
 
-  isAuthenticated(): boolean {
-    if (this.auth.currentUser !== null) {
-      const users = collection(this.firestore, 'users');
-      const currentAdmin = query(users, and(where('rol','==','administrador'), where('uid','==',this.auth.currentUser.uid)));
-      if (currentAdmin) {
-        return true;
-      }
+  isAuthenticated(): Observable<boolean> {
+
+    if (!this.auth.currentUser) {
+      return of(false);
     }
-    return false;
+
+    const users = collection(this.firestore, 'users');
+    const currentAdmin = query(
+      users,
+      where('rol', '==', 'administrador'),
+      where('uid', '==', this.auth.currentUser.uid)
+    );
+
+    return collectionData(currentAdmin).pipe(
+      map(users => users.length > 0)
+    );
+
   }
 
-    logout() {
+  logout() {
     sessionStorage.clear();
     this.auth.signOut();
     this.router.navigate(['/login']);
@@ -37,7 +45,8 @@ export class LoginService {
     const usuariosRef = collection(this.firestore, 'users');
     const usuarioLogeadoData = query(
       usuariosRef,
-      and(where('rol', '==', 'administrador'), where('uid', '==', uid))
+      where('rol', '==', 'administrador'), 
+      where('uid', '==', uid)
     );
     return collectionData(usuarioLogeadoData, { idField: 'uid' }) as Observable<Usuario[]>;
   }

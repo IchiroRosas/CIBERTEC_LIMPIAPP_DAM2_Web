@@ -5,6 +5,7 @@ import { Auth, AuthError, signInWithEmailAndPassword } from '@angular/fire/auth'
 import { LoginService } from '../../services/login.service';
 import { Usuario } from '../../../shared/models/dto';
 import Swal from 'sweetalert2';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -34,32 +35,35 @@ export class LoginComponent implements OnInit {
 
   async iniciarSesion() {
     this.isLoading = true;
+    this.errorMessage = null;
     const correo = this.loginForm.value.correo;
     const password = this.loginForm.value.password;
 
     try {
       const userCredential = await signInWithEmailAndPassword(this.auth, correo, password);
-      this.loginService.obtenerDatosUsuarioLogeado(userCredential.user.uid).subscribe(usuarioLogeado => {
-        if (usuarioLogeado.length > 0) {
-          this.llenarSessionStorage(usuarioLogeado[0]);
-          this.router.navigate(['/principal']);
-          this.mensajeBienvenida();
-        } 
-        this.errorMessage = 'Credenciales inválidas. Verifica tu correo y contraseña.';
-      });
-    } catch (error) {
-      this.isLoading = false;
-      const firebaseAuthError = error as AuthError;
+      this.loginService.obtenerDatosUsuarioLogeado(userCredential.user.uid).pipe(take(1)).subscribe(usuarioLogeado => {
 
-      if (firebaseAuthError.code) {
-        this.errorMessage = 'Credenciales inválidas. Verifica tu correo y contraseña.';
-      }
-    } finally {
+        if (usuarioLogeado.length === 0) {
+          this.auth.signOut();
+          this.errorMessage = 'Acceso denegado. No eres administrador.';
+          this.isLoading = false;
+          return;
+        }
+
+        this.llenarSessionStorage(usuarioLogeado[0]);
+        this.router.navigate(['/principal']);
+        this.mensajeBienvenida();
+        this.isLoading = false;
+
+      });
+      
+    } catch (error) {
+      this.errorMessage = 'Credenciales inválidas. Verifica tu correo y contraseña.';
       this.isLoading = false;
     }
   }
 
-  llenarSessionStorage(usuarioLogeado: Usuario) {    
+  llenarSessionStorage(usuarioLogeado: Usuario) {
     sessionStorage.setItem('nombres', usuarioLogeado.nombres || '');
     sessionStorage.setItem('apellidos', usuarioLogeado.apellidos || '');
     sessionStorage.setItem('email', usuarioLogeado.email || '');
