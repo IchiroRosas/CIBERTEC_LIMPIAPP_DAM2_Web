@@ -14,7 +14,7 @@ export class FinalizadosService {
       const solicitudesRef = collection(this.firestore, 'solicitudesServicio');
       const consultaFinalizadas = query(
         solicitudesRef,
-        where('estado', '==', 'finalizado')
+        where('estado', 'in', ['finalizado', 'cancelado'])
       );
       return collectionData(consultaFinalizadas, { idField: 'id' }) as Observable<SolicitudServicio[]>;
     }

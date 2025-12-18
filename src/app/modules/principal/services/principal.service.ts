@@ -14,7 +14,7 @@ export class PrincipalService {
     const solicitudesRef = collection(this.firestore, 'solicitudesServicio');
     const consultaPendientes = query(
       solicitudesRef,
-      or(where('estado', '==', 'pendiente'), where('estado', '==', "rechazado"))
+      where('estado', 'in', ['pendiente', 'rechazado'])
     );
     return collectionData(consultaPendientes, { idField: 'id' }) as Observable<SolicitudServicio[]>;
   }

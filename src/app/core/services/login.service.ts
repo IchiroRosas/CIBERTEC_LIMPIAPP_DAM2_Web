@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { map, Observable, of } from 'rxjs';
+import { map, Observable, of, take } from 'rxjs';
 import { Usuario } from '../../shared/models/dto';
 import { query, and, collection, collectionData, Firestore, where } from '@angular/fire/firestore';
 
@@ -19,6 +19,7 @@ export class LoginService {
   isAuthenticated(): Observable<boolean> {
 
     if (!this.auth.currentUser) {
+      this.router.navigate(['/login']);
       return of(false);
     }
 
@@ -30,7 +31,17 @@ export class LoginService {
     );
 
     return collectionData(currentAdmin).pipe(
-      map(users => users.length > 0)
+      take(1),
+      map(users => {
+        const autorizado = users.length > 0
+
+      if (!autorizado) {
+        this.router.navigate(['/login']);
+      }
+
+      return autorizado;
+
+      })
     );
 
   }

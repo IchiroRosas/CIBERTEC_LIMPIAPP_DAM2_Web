@@ -14,7 +14,7 @@ export class AsignadosService {
     const solicitudesRef = collection(this.firestore, 'solicitudesServicio');
     const consultaPendientes = query(
       solicitudesRef,
-      or(where('estado', '==', 'asignado'), where('estado', '==', 'aceptado'))
+      where('estado', 'in', ['asignado', 'aceptado'])
     );
     return collectionData(consultaPendientes, { idField: 'id' }) as Observable<SolicitudServicio[]>;
   }
